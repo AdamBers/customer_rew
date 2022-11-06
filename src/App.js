@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
+import SubReason from './SubReason'
 
 function App() {
-  const [value1, setValue1] = useState(0)
+  const [value1, setValue1] = useState(1)
   const [isChecked, setIsChecked] = useState([false, false, false, false])
-  const [active, setActive] = useState([1])
 
   const reasons = [
     {
@@ -30,13 +30,6 @@ function App() {
     setIsChecked(newArr)
   }
 
-  const toggleClass = (e) => {
-    let newArr = [...active]
-    newArr = newArr.filter((item) => item !== e)
-    console.log(newArr)
-    setActive(newArr)
-  }
-
   return (
     <div className="App">
       <div className="header">
@@ -45,39 +38,39 @@ function App() {
         <form action="">
           <input
             type="range"
+            className='slider'
             id="volume"
             name="rng"
             value={value1}
             min="0"
-            max="10"
+            max="7"
             step="1"
             onChange={(event) => setValue1(event.target.value)}
           />
+          <div className='total'>{value1}</div>
         </form>
         {value1 > 0 &&
           <div className='details_1'>
             <h2>Уточните, какой именно функционал требует улучшений в интернет-банке?</h2>
             <h3>(возможно несколько вариантов)</h3>
-            {reasons.map((reason, i) => {
+            {reasons.map((reason, index) => {
               return (
-                <div className='reasons' key={i}>
+                <div className='reasons' key={index}>
                   <div className='reasons_checkboxes'>
-                    <input type="checkbox" id={i} name={i} checked={isChecked[i]} onChange={(event) => handleChange(event)} />
-                    <label htmlFor={i}>{reason.name}</label>
+                    <input type="checkbox" id={index} name={index} checked={isChecked[index]} onChange={(event) => handleChange(event)} />
+                    <label htmlFor={index}>{reason.name}</label>
                   </div>
                   <div className='sub_reasons'>
-                    {isChecked[i] && reasons[i].reasonDescr.map((item, i) => {
+                    {isChecked[index] && reasons[index].reasonDescr.map((item, i) => {
                       return (
-                        <span className={active.includes(i) ? "sub_reasons__items active" : "sub_reasons__items"} key={i} onClick={() => toggleClass(i)} >
-                          {item}
-                        </span>
+                        <SubReason item={item} i={i} key={i} />
                       )
                     })}
                   </div>
-
                 </div>
               )
             })}
+            <button className='send_button'>Отправить</button>
           </div>}
       </div>
     </div >
