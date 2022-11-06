@@ -1,5 +1,65 @@
 body {
   margin: 0;
   padding: 0;
+  background-color: rgb(19, 19, 19);
+
 }
 
+.App {
+  width: 80%;
+  margin: 0 auto;
+  background-color: white;
+  padding: 1% 5%;
+  min-height: 800px;
+}
+
+.header h1 {
+  color: hwb(0 9% 27%)
+}
+
+.header>h3 {
+  color: rgb(122, 122, 122)
+}
+
+input {
+  width: 100%
+}
+
+.details_1>h3 {
+  color: rgb(122, 122, 122)
+}
+
+.reasons {
+  box-sizing: content-box;
+}
+
+.reasons_checkboxes {
+  display: flex;
+}
+
+.reasons_checkboxes>input {
+  width: 20px !important;
+  height: 20px !important;
+  margin-right: 20px;
+}
+
+.sub_reasons {
+  display: inline;
+}
+
+.sub_reasons__items {
+  border: 1px solid tomato;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 20px;
+  display: inline-block
+}
+
+.sub_reasons__items:hover {
+  background-color: brown;
+  cursor: pointer;
+}
+
+.active {
+  background-color: brown;
+}
